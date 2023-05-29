@@ -10,7 +10,10 @@ def obtemHabilidades():
         "Designer": ["Criatividade", "Artes visuais", "Composição"],
         "Programador": ["Lógica", "Matemática", "Resolução de problemas"],
         "Biólogo": ["Biologia", "Química"],
-        "Médico": ["Biologia", "Química"]
+        "Médico": ["Biologia", "Química"],
+        "Professor": [],
+        "Psicólogo": [],
+        "Jornalista": []
     }
 
     habilidades = {}
