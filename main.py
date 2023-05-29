@@ -9,11 +9,11 @@ def obtemHabilidades():
         "Mecânico": ["Eletrônica", "Matemática", "Programação"],
         "Designer": ["Criatividade", "Artes visuais", "Composição"],
         "Programador": ["Lógica", "Matemática", "Resolução de problemas"],
-        "Biólogo": ["Biologia", "Química"],
-        "Médico": ["Biologia", "Química"],
-        "Professor": [],
-        "Psicólogo": [],
-        "Jornalista": []
+        "Biólogo": ["Biologia", "Química", "Observação"],
+        "Médico": ["Biologia", "Química", "Empatia"],
+        "Professor": ["Didática", "Pensamento crítico", "Criatividade"],
+        "Psicólogo": ["Empatia", "Observação", "Comunicação"],
+        "Jornalista": ["Comunicação", "Oratória", "Idiomas"]
     }
 
     habilidades = {}
@@ -21,7 +21,7 @@ def obtemHabilidades():
     print("Por favor, informe suas habilidades (digite 'fim' para encerrar):")
     while True:
         habilidade = input("Habilidade: ")
-        if habilidade == "fim":
+        if habilidade.lower() == "fim":
             break
         valor_habilidade = int(input("Valor da habilidade (de 1 a 10): "))
         habilidades[habilidade] = valor_habilidade
