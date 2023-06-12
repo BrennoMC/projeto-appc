@@ -1,79 +1,142 @@
 
 def calcularPorcentagemHabilidade(habilidades, profissoes):
-    total_habilidades = sum(habilidades.values())
+    ptos = 0
     porcentagens = {}
-
-    for profissao, habilidades_profissao in profissoes.items():
-        total_correspondencias = 0
-
-        for habilidade in habilidades_profissao:
-            if habilidade in habilidades:
-                total_correspondencias += habilidades[habilidade]
-
-        porcentagem = (total_correspondencias / total_habilidades) * 100
-        porcentagens[profissao] = porcentagem
-
+    for prof in profissoes:
+        nomeProf = prof["Profissão"]
+        for skillBuscada in habilidades:
+            for skillEncontrada, valor in prof["Habilidades"].items():
+                # total de pontos dentro da profissão
+                total = sum(prof["Habilidades"].values())
+                if skillEncontrada == skillBuscada and ptos <= total:
+                    ptos += valor
+            percent = (ptos / total) * 100
+        ptos = 0
+        porcentagens[nomeProf] = percent
     return porcentagens
 
 
 def obtemHabilidades():
-    profissoes = {
-        "Engenheiro": ["Matemática", "Física", "Logística"],
-        "Mecânico": ["Eletrônica", "Matemática", "Programação"],
-        "Designer": ["Criatividade", "Artes visuais", "Composição"],
-        "Programador": ["Lógica", "Matemática", "Resolução de problemas"],
-        "Biólogo": ["Biologia", "Química", "Observação"],
-        "Médico": ["Biologia", "Química", "Empatia"],
-        "Professor": ["Didática", "Pensamento crítico", "Criatividade"],
-        "Psicólogo": ["Empatia", "Observação", "Comunicação"],
-        "Jornalista": ["Comunicação", "Oratória", "Idiomas"]
-    }
-
-    habilidades = {}
-
-    print("\nInforme suas habilidades de acordo com a lista abaixo\n- Primeiro, escolha o número da habilidade desejada\n- Segundo, digite o valor da habilidade ")
-
-    listaHabilidades = [
-        "01 - Matemática",
-        "02 - Física",
-        "03 - Química",
-        "04 - Biologia",
-        "05 - Artes Visuais",
-        "06 - Eletrônica",
-        "07 - Criatividade",
-        "08 - Lógica",
-        "09 - Resolução de Problemas",
-        "10 - Observação",
-        "11 - Didática",
-        "12 - Comunicação",
-        "13 - Idiomas",
-        "14 - Oratória",
-        "15 - Pensamento Crítico",
-        "16 - Composição",
-        "17 - Eletrônica",
-        "00 - SAIR"
+    profissoes = [
+        {
+            "Profissão": "Engenheiro Civil",
+            "Habilidades": {
+                "Matemática": 8,
+                "Física": 7,
+                "Comunicação": 7
+            }
+        },
+        {
+            "Profissão": "Engenheiro de Controle e Automação",
+            "Habilidades": {
+                "Eletrônica": 8,
+                "Matemática": 7,
+                "Programação": 6
+            }
+        },
+        {
+            "Profissão": "Designer",
+            "Habilidades": {
+                "Criatividade": 9,
+                "Artes Visuais": 7,
+                "Photoshop": 6
+            }
+        },
+        {
+            "Profissão": "Programador",
+            "Habilidades": {
+                "Lógica": 9,
+                "Matemática": 7,
+                "Resolução de problemas": 7
+            }
+        },
+        {
+            "Profissão": "Biólogo",
+            "Habilidades": {
+                "Biologia": 8,
+                "Química": 7,
+                "Observação": 6
+            }
+        },
+        {
+            "Profissão": "Médico",
+            "Habilidades": {
+                "Biologia": 8,
+                "Química": 8,
+                "Empatia": 8
+            }
+        },
+        {
+            "Profissão": "Professor",
+            "Habilidades": {
+                "Didática": 9,
+                "Pensamento crítico": 8,
+                "Criatividade": 7
+            }
+        },
+        {
+            "Profissão": "Psicólogo",
+            "Habilidades": {
+                "Empatia": 9,
+                "Humanas": 8,
+                "Comunicação": 8
+            }
+        },
+        {
+            "Profissão": "Jornalista",
+            "Habilidades": {
+                "Comunicação": 8,
+                "Leitura e Escrita": 9,
+                "Idiomas": 6
+            }
+        }
     ]
-    print("\n01 - Matemática\n02 - Física\n03 - Química\n04 - Biologia\n05 - Artes Visuais\n06 - Lógica\n07 - Criatividade\n08 - Empatia\n09 - Resolução de Problemas\n10 - Observação\n11 - Didática\n12 - Comunicação\n13 - Idiomas\n14 - Oratória\n15 - Pensamento Crítico\n16 - Composição\n17 - Eletrônica\n00 - SAIR")
-    
-    cont_habi = 1
+
+    habilidades = []
+
+    print("\nInforme pelo menos 3 habilidades da lista abaixo")
+
+    listaHabilidades = {
+        0: "SAIR",
+        1: "Matemática",
+        2: "Física",
+        3: "Química",
+        4: "Biologia",
+        5: "Artes Visuais",
+        6: "Eletrônica",
+        7: "Criatividade",
+        8: "Lógica",
+        9: "Resolução de Problemas",
+        10: "Observação",
+        11: "Didática",
+        12: "Comunicação",
+        13: "Idiomas",
+        14: "Oratória",
+        15: "Pensamento Crítico",
+        16: "Composição",
+        17: "Eletrônica",
+        18: "Comunicação",
+        19: "Programação"
+    }
+    print("\n01 - Matemática\n02 - Física\n03 - Química\n04 - Biologia\n05 - Artes Visuais\n06 - Lógica\n07 - Criatividade\n08 - Empatia\n09 - Resolução de Problemas\n10 - Observação\n11 - Didática\n12 - Comunicação\n13 - Idiomas\n14 - Oratória\n15 - Pensamento Crítico\n16 - Composição\n17 - Eletrônica\n\n00 - CALCULAR")
+
+    contadorDeHabilidadesDigitadas = 1
     while True:
-        habilidade = int(input("\nHabilidade: "))
-        if cont_habi >= 3:
+        while contadorDeHabilidadesDigitadas <= 3:
+            habilidade = int(input("\nHabilidade: "))
             if habilidade == 00:
                 break
-        if habilidade == 00:
-            print('Escolha no mínimo três habilidades!')
-        valorHabilidade = int(input("Valor da habilidade (de 1 a 10): "))
-        cont_habi += 1
-        habilidades[listaHabilidades[habilidade - 1]] = valorHabilidade
-        # habilidades[listaHabilidades[habilidade]] = valorHabilidade
+            habilidades.append(listaHabilidades[habilidade])
+            contadorDeHabilidadesDigitadas += 1
+        # continuar = input("Deseja continuar")
+        break
+
     print(f'\nBaseado em suas habilidades: \n{habilidades}\n')
-    
     print('Sua porcentagem de compatibilidade com cada profissão é: \n')
+
     porcentagens = calcularPorcentagemHabilidade(habilidades, profissoes)
     for profissao, porcentagem in porcentagens.items():
-        print(f"{profissao}: {porcentagem}%")
+        print(f"{profissao}: {round(porcentagem, 2)}%")
 
 
 obtemHabilidades()
-# porcentagens = calcular_porcentagem_habilidades(habilidades, profissoes)
