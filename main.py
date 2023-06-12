@@ -39,7 +39,7 @@ def obtemHabilidades():
             "Habilidades": {
                 "Criatividade": 9,
                 "Artes Visuais": 7,
-                "Photoshop": 6
+                "Desenho": 7
             }
         },
         {
@@ -71,7 +71,7 @@ def obtemHabilidades():
             "Habilidades": {
                 "Didática": 9,
                 "Pensamento crítico": 8,
-                "Criatividade": 7
+                "Empatia": 7
             }
         },
         {
@@ -94,10 +94,9 @@ def obtemHabilidades():
 
     habilidades = []
 
-    print("\nInforme pelo menos 3 habilidades da lista abaixo")
+    print("\nInforme pelo menos 3 habilidades da lista abaixo:")
 
     listaHabilidades = {
-        0: "SAIR",
         1: "Matemática",
         2: "Física",
         3: "Química",
@@ -105,7 +104,7 @@ def obtemHabilidades():
         5: "Artes Visuais",
         6: "Eletrônica",
         7: "Criatividade",
-        8: "Lógica",
+        8: "Empatia",
         9: "Resolução de Problemas",
         10: "Observação",
         11: "Didática",
@@ -114,22 +113,36 @@ def obtemHabilidades():
         14: "Oratória",
         15: "Pensamento Crítico",
         16: "Composição",
-        17: "Eletrônica",
-        18: "Comunicação",
-        19: "Programação"
+        17: "Lógica",
+        18: "Programação",
+        19: "Humanas",
+        20: "Leitura e Escrita",
+        21: "Desenho"
     }
-    print("\n01 - Matemática\n02 - Física\n03 - Química\n04 - Biologia\n05 - Artes Visuais\n06 - Lógica\n07 - Criatividade\n08 - Empatia\n09 - Resolução de Problemas\n10 - Observação\n11 - Didática\n12 - Comunicação\n13 - Idiomas\n14 - Oratória\n15 - Pensamento Crítico\n16 - Composição\n17 - Eletrônica\n\n00 - CALCULAR")
+    print("\n1 - Matemática\n2 - Física\n3 - Química\n4 - Biologia\n5 - Artes Visuais\n6 - Eletrônica", 
+          "\n7 - Criatividade\n8 - Empatia\n9 - Resolução de Problemas\n10 - Observação\n11 - Didática",
+          "\n12 - Comunicação\n13 - Idiomas\n14 - Oratória\n15 - Pensamento Crítico\n16 - Composição",
+          "\n17 - Lógica\n18 - Programação\n19 - Humanas\n20 - Leitura e Escrita\n21 - Desenho\n\n0 - CALCULAR\n")
 
-    contadorDeHabilidadesDigitadas = 1
+    habilidadesArmazenadas = []
     while True:
-        while contadorDeHabilidadesDigitadas <= 3:
-            habilidade = int(input("\nHabilidade: "))
-            if habilidade == 00:
-                break
-            habilidades.append(listaHabilidades[habilidade])
-            contadorDeHabilidadesDigitadas += 1
-        # continuar = input("Deseja continuar")
-        break
+        habilidade = int(input("Habilidade: "))
+        try:
+            if habilidade >= 0 and habilidade <= 21:
+                if habilidade == 0:
+                    if len(habilidadesArmazenadas) >= 3:
+                        break
+                habilidadeSelecionada = listaHabilidades[habilidade]
+                if habilidadeSelecionada not in habilidadesArmazenadas:
+                    habilidadesArmazenadas.append(habilidadeSelecionada)
+                    habilidades.append(habilidadeSelecionada)
+                else:
+                    print("Você já selecionou essa habilidade. Escolha outra.")
+            else:
+                print("Habilidade inválida. Escolha um número entre 1 e 21.")
+        except:
+            print("Habilidade inválida. Escolha um número entre 1 e 21.")
+
 
     print(f'\nBaseado em suas habilidades: \n{habilidades}\n')
     print('Sua porcentagem de compatibilidade com cada profissão é: \n')
