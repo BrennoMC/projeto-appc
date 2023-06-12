@@ -131,7 +131,8 @@ def obtemHabilidades():
         # continuar = input("Deseja continuar")
         break
 
-    print(f'\nSuas Habilidades = {habilidades}\n')
+    print(f'\nBaseado em suas habilidades: \n{habilidades}\n')
+    print('Sua porcentagem de compatibilidade com cada profissão é: \n')
 
     porcentagens = calcularPorcentagemHabilidade(habilidades, profissoes)
     for profissao, porcentagem in porcentagens.items():
