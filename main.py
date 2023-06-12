@@ -31,7 +31,7 @@ def obtemHabilidades():
 
     habilidades = {}
 
-    print("\nInforme suas habilidades de acordo com a lista abaixo\n- Primeiro escolha o número da habilidade desejada\n- Segundo digite o valor da habilidade ")
+    print("\nInforme suas habilidades de acordo com a lista abaixo\n- Primeiro, escolha o número da habilidade desejada\n- Segundo, digite o valor da habilidade ")
 
     listaHabilidades = [
         "01 - Matemática",
@@ -53,17 +53,23 @@ def obtemHabilidades():
         "17 - Eletrônica",
         "00 - SAIR"
     ]
-    print("\n01 - Matemática\n02 - Física\n03 - Química\n04 - Biologia\n05 - Artes Visuais\n06 - Lógica\n07 - Criatividade\n08 - Empatia\n09 - Resolução de Problemas\n10 - Observação\n11 - Didáticaz\n12 - Comunicação\n13 - Idiomas\n14 - Oratória\n15 - Pensamento Crítico\n16 - Composição\n17 - Eletrônica\n00 - SAIR")
-
+    print("\n01 - Matemática\n02 - Física\n03 - Química\n04 - Biologia\n05 - Artes Visuais\n06 - Lógica\n07 - Criatividade\n08 - Empatia\n09 - Resolução de Problemas\n10 - Observação\n11 - Didática\n12 - Comunicação\n13 - Idiomas\n14 - Oratória\n15 - Pensamento Crítico\n16 - Composição\n17 - Eletrônica\n00 - SAIR")
+    
+    cont_habi = 1
     while True:
         habilidade = int(input("\nHabilidade: "))
+        if cont_habi >= 3:
+            if habilidade == 00:
+                break
         if habilidade == 00:
-            break
+            print('Escolha no mínimo três habilidades!')
         valorHabilidade = int(input("Valor da habilidade (de 1 a 10): "))
+        cont_habi += 1
         habilidades[listaHabilidades[habilidade - 1]] = valorHabilidade
         # habilidades[listaHabilidades[habilidade]] = valorHabilidade
-    print('\n', habilidades)
-
+    print(f'\nBaseado em suas habilidades: \n{habilidades}\n')
+    
+    print('Sua porcentagem de compatibilidade com cada profissão é: \n')
     porcentagens = calcularPorcentagemHabilidade(habilidades, profissoes)
     for profissao, porcentagem in porcentagens.items():
         print(f"{profissao}: {porcentagem}%")
