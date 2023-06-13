@@ -1,4 +1,10 @@
+# Projeto "Recomendação baseada em dicionários"
 
+# Autores:
+# Brenno Martiniano Cavalcante  RA: 22898449
+# João Pedro Costa Malta        RA: 23002743
+
+# Calculando a porcentagem das habilidades
 def calcularPorcentagemHabilidade(habilidades, profissoes):
     ptos = 0
     porcentagens = {}
@@ -15,7 +21,7 @@ def calcularPorcentagemHabilidade(habilidades, profissoes):
         porcentagens[nomeProf] = percent
     return porcentagens
 
-
+# Obtendo as habilidades
 def obtemHabilidades():
     profissoes = [
         {
@@ -124,6 +130,7 @@ def obtemHabilidades():
           "\n12 - Comunicação\n13 - Idiomas\n14 - Oratória\n15 - Pensamento Crítico\n16 - Composição",
           "\n17 - Lógica\n18 - Programação\n19 - Humanas\n20 - Leitura e Escrita\n21 - Desenho\n\n0 - CALCULAR\n")
 
+# Vaidação do input do usuário
     habilidadesArmazenadas = []
     while True:
         habilidade = int(input("Habilidade: "))
@@ -143,13 +150,12 @@ def obtemHabilidades():
         except:
             print("Habilidade inválida. Escolha um número entre 1 e 21.")
 
-
+#Exibição de resultado na tela
     print(f'\nBaseado em suas habilidades: \n{habilidades}\n')
     print('Sua porcentagem de compatibilidade com cada profissão é: \n')
 
     porcentagens = calcularPorcentagemHabilidade(habilidades, profissoes)
     for profissao, porcentagem in porcentagens.items():
         print(f"{profissao}: {round(porcentagem, 2)}%")
-
 
 obtemHabilidades()
