@@ -130,25 +130,34 @@ def obtemHabilidades():
           "\n12 - Comunicação\n13 - Idiomas\n14 - Oratória\n15 - Pensamento Crítico\n16 - Composição",
           "\n17 - Lógica\n18 - Programação\n19 - Humanas\n20 - Leitura e Escrita\n21 - Desenho\n\n0 - CALCULAR\n")
 
-# Vaidação do input do usuário
+# Validação do input do usuário
     habilidadesArmazenadas = []
+    contador_habilidades = 0
     while True:
-        habilidade = int(input("Habilidade: "))
-        try:
-            if habilidade >= 0 and habilidade <= 21:
+        habilidade = input("Habilidade: ")
+        if habilidade.isdigit():
+            habilidade = int(habilidade)
+            try:
                 if habilidade == 0:
-                    if len(habilidadesArmazenadas) >= 3:
+                    if contador_habilidades < 3:
+                        print("Digite pelo menos 3 habilidades antes de calcular.")
+                        continue
+                    else:
                         break
-                habilidadeSelecionada = listaHabilidades[habilidade]
-                if habilidadeSelecionada not in habilidadesArmazenadas:
-                    habilidadesArmazenadas.append(habilidadeSelecionada)
-                    habilidades.append(habilidadeSelecionada)
+                elif habilidade >= 1 and habilidade <= 21:
+                    habilidadeSelecionada = listaHabilidades[habilidade]
+                    if habilidadeSelecionada not in habilidadesArmazenadas:
+                        habilidadesArmazenadas.append(habilidadeSelecionada)
+                        habilidades.append(habilidadeSelecionada)
+                        contador_habilidades += 1
+                    else:
+                        print("Você já selecionou essa habilidade. Escolha outra.")
                 else:
-                    print("Você já selecionou essa habilidade. Escolha outra.")
-            else:
+                    print("Habilidade inválida. Escolha um número entre 1 e 21.")
+            except:
                 print("Habilidade inválida. Escolha um número entre 1 e 21.")
-        except:
-            print("Habilidade inválida. Escolha um número entre 1 e 21.")
+        else:
+            print("Entrada inválida. Digite um valor numérico válido.")
 
 #Exibição de resultado na tela
     print(f'\nBaseado em suas habilidades: \n{habilidades}\n')
@@ -158,4 +167,24 @@ def obtemHabilidades():
     for profissao, porcentagem in porcentagens.items():
         print(f"{profissao}: {round(porcentagem, 2)}%")
 
-obtemHabilidades()
+#Ínicio do programa
+
+resp = ''
+while True:
+    print('=-'*40, '\n')
+    print('Seja bem vindo ao verificador de compatibilidade de profissões!')
+    print('\n', '=-' * 40)
+    obtemHabilidades()
+    while True:
+        try:
+            resp = input('\nDeseja tentar novamente? [S/N] ')
+            if resp.upper() == 'N':
+                print('Obrigado por usar este programa!')
+                break
+            elif resp.upper() != 'S':
+                raise ValueError
+            break  # Se chegou aqui, a entrada é válida, então sai do loop interno
+        except ValueError:
+            print('Você deve digitar apenas as letras "S" ou "N"!')
+    if resp.upper() == 'N':
+        break
